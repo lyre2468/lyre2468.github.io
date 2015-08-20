@@ -1,0 +1,528 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>视差滚动 | lyre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="lyre">
+    
+
+    
+    <meta name="description" content="视差滚动(Parallax Scrolling)是指让多层背景以不同的速度移动，形成立体的运动效果，带来非常出色的视觉体验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视差滚动">
+<meta property="og:url" content="http://yoursite.com/2015/04/03/视差滚动2/index.html">
+<meta property="og:site_name" content="lyre">
+<meta property="og:description" content="视差滚动(Parallax Scrolling)是指让多层背景以不同的速度移动，形成立体的运动效果，带来非常出色的视觉体验。">
+<meta property="og:updated_time" content="2015-08-20T15:08:10.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="视差滚动">
+<meta name="twitter:description" content="视差滚动(Parallax Scrolling)是指让多层背景以不同的速度移动，形成立体的运动效果，带来非常出色的视觉体验。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="lyre" type="application/atom+xml">
+    
+    
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="lyre">lyre</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/03/视差滚动2/" title="视差滚动" itemprop="url">视差滚动</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="lyre" target="_blank" itemprop="author">lyre</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-03T12:24:33.000Z" itemprop="datePublished"> 发表于 2015-04-03</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现原理："><span class="toc-number">2.</span> <span class="toc-text">实现原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="介绍">介绍</h2><p>页面上很多的元素在相互独立地滚动着，如果我们来对其它分层的话，可以有两到三层：背景层，内容层，贴图层。在前景、内容、贴图三个部分的移动速率的不同来实现立体效果。</p>
+<h2 id="实现原理：">实现原理：</h2><p>　　背景层的滚动(最慢)</p>
+<p>　　贴图层(内容层和背景层之间的元素)的滚动(次慢); 按照现实生活的经验，越远的景物移动越慢。</p>
+<p>　　内容层的滚动(可以和页面的滚动速度一致) 。</p>
+<p>　　我们让三个图层的滚动速度不一致，就做出了简单的差异滚动效果。</p>
+<p>　　当然这只是实现了简单的滚动视差效果，距离一个好的滚动视察网站还不够。</p>
+<h2 id="代码">代码</h2><p>这里给出了视差滚动（图片播放）的html和js代码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"pxs_container"</span> class=<span class="string">"pxs_container"</span>&gt;</span><br><span class="line">    &lt;div class=<span class="string">"pxs_bg"</span>&gt;</span><br><span class="line">        &lt;div class=<span class="string">"pxs_bg1"</span>&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"pxs_bg2"</span>&gt;&lt;/div&gt;</span><br><span class="line">        &lt;div class=<span class="string">"pxs_bg3"</span>&gt;&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=<span class="string">"pxs_slider_wrapper"</span>&gt;</span><br><span class="line">        &lt;ul class=<span class="string">"pxs_slider"</span>&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big1.jpg"</span> alt=<span class="string">"First Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big2.jpg"</span> alt=<span class="string">"Second Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big3.jpg"</span> alt=<span class="string">"Third Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big4.jpg"</span> alt=<span class="string">"Forth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big5.jpg"</span> alt=<span class="string">"Fifth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/big6.jpg"</span> alt=<span class="string">"Sixth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">        &lt;div class=<span class="string">"pxs_navigation"</span>&gt;</span><br><span class="line">            &lt;span class=<span class="string">"pxs_next"</span>&gt;&lt;/span&gt;</span><br><span class="line">            &lt;span class=<span class="string">"pxs_prev"</span>&gt;&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        &lt;ul class=<span class="string">"pxs_thumbnails"</span>&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm1.jpg"</span> alt=<span class="string">"First Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm2.jpg"</span> alt=<span class="string">"Second Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm3.jpg"</span> alt=<span class="string">"Third Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm4.jpg"</span> alt=<span class="string">"Forth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm5.jpg"</span> alt=<span class="string">"Fifth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">            &lt;li&gt;&lt;img src=<span class="string">"images/ParallaxScrolling/sm6.jpg"</span> alt=<span class="string">"Sixth Image"</span> /&gt;&lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line"></span><br><span class="line"> /*</span><br><span class="line"> 视差滚动</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">oParallaxScrolling</span></span>()&#123;</span><br><span class="line">    </span><br><span class="line">    var oPS=document.getElementById(<span class="string">"pxs_container"</span>);</span><br><span class="line">    var oPSAll=getByClass(oPS,<span class="string">"pxs_slider_wrapper"</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    //背景</span><br><span class="line">    var <span class="built_in">bg</span>1=getByClass(oPS,<span class="string">"pxs_bg1"</span>)[<span class="number">0</span>];</span><br><span class="line">    var <span class="built_in">bg</span>2=getByClass(oPS,<span class="string">"pxs_bg2"</span>)[<span class="number">0</span>];</span><br><span class="line">    var <span class="built_in">bg</span>3=getByClass(oPS,<span class="string">"pxs_bg3"</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    //大图片</span><br><span class="line">    var bigP=getByClass(oPS,<span class="string">"pxs_slider"</span>)[<span class="number">0</span>];</span><br><span class="line">    var bigPLi=bigP.getElementsByTagName(<span class="string">"li"</span>);</span><br><span class="line">    var bigPImg=bigP.getElementsByTagName(<span class="string">"img"</span>);</span><br><span class="line"></span><br><span class="line">    //小图片</span><br><span class="line">    var smallP=getByClass(oPS,<span class="string">"pxs_thumbnails"</span>)[<span class="number">0</span>];</span><br><span class="line">    var smallPLi=smallP.getElementsByTagName(<span class="string">"li"</span>);</span><br><span class="line">    var smallPImg=smallP.getElementsByTagName(<span class="string">"img"</span>);</span><br><span class="line"></span><br><span class="line">    //左右按钮</span><br><span class="line">    var pre=getByClass(oPS,<span class="string">"pxs_prev"</span>)[<span class="number">0</span>];</span><br><span class="line">    var nex=getByClass(oPS,<span class="string">"pxs_next"</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //获取浏览器窗口的宽高</span><br><span class="line">    var ww=window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;</span><br><span class="line">    var wh=window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;</span><br><span class="line"></span><br><span class="line">    var L=bigPLi.length;  //图片的个数</span><br><span class="line">    <span class="built_in">set</span>Style(bigP, <span class="string">'width'</span>, L*ww + <span class="string">'px'</span>);</span><br><span class="line"></span><br><span class="line">    //将窗口设置为可见的</span><br><span class="line">    oPSAll.style.display=<span class="string">'block'</span>;</span><br><span class="line">    //浏览器的尺寸小于<span class="number">768</span>，隐藏该模块</span><br><span class="line">   /* <span class="keyword">if</span>(ww&lt;<span class="number">768</span>)&#123;</span><br><span class="line">        oPS.style.display=<span class="string">'none'</span>;</span><br><span class="line">    &#125;*/</span><br><span class="line"></span><br><span class="line">    //初始化大图位置</span><br><span class="line">    <span class="keyword">for</span>(var i=<span class="number">0</span>; i&lt;L; i++)&#123;</span><br><span class="line">        <span class="built_in">set</span>Style(bigPLi[i], <span class="string">'width'</span>, ww + <span class="string">'px'</span>);</span><br><span class="line">        <span class="built_in">set</span>Style(bigPImg[i], <span class="string">'left'</span>, ww/<span class="number">2</span> - bigPImg[i].offsetWidth/<span class="number">2</span> + <span class="string">'px'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //初始化左右按钮位置</span><br><span class="line">    <span class="built_in">set</span>Style(pre, <span class="string">'left'</span>, ww/<span class="number">2</span> - bigPImg[<span class="number">0</span>].offsetWidth/<span class="number">2</span> - <span class="number">10</span> + <span class="string">'px'</span>);</span><br><span class="line">    <span class="built_in">set</span>Style(nex, <span class="string">'left'</span>, ww/<span class="number">2</span> - bigPImg[<span class="number">0</span>].offsetWidth/<span class="number">2</span> + bigPImg[<span class="number">0</span>].offsetWidth - <span class="number">20</span> + <span class="string">'px'</span>);</span><br><span class="line"></span><br><span class="line">    //初始化小图位置</span><br><span class="line">    <span class="built_in">set</span>Style(smallP,<span class="string">'width'</span>,bigPImg[<span class="number">0</span>].offsetWidth + <span class="string">'px'</span>);</span><br><span class="line">    <span class="built_in">set</span>Style(smallP,<span class="string">'left'</span>, ww/<span class="number">2</span> - bigPImg[<span class="number">0</span>].offsetWidth/<span class="number">2</span> + <span class="string">'px'</span>);</span><br><span class="line"></span><br><span class="line">    var angle ;</span><br><span class="line">    <span class="keyword">for</span>(var i=<span class="number">0</span>; i&lt;L; i++)&#123;</span><br><span class="line">        <span class="built_in">set</span>Style(smallPLi[i], <span class="string">'left'</span>, smallPLi[i].offsetWidth * i + (bigPImg[<span class="number">0</span>].offsetWidth - L*smallPLi[<span class="number">0</span>].offsetWidth -<span class="number">80</span>)/<span class="number">2</span> + <span class="number">80</span>/L*i +  <span class="string">'px'</span>);</span><br><span class="line">        angle = Math.random()*<span class="number">60</span> - <span class="number">30</span>;</span><br><span class="line">        <span class="built_in">set</span>Style(smallPImg[i],<span class="string">'transform'</span>,<span class="string">'rotate('</span> + angle + <span class="string">'deg)'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //效果</span><br><span class="line">    var now = <span class="number">0</span>; //记录照片的播放次序</span><br><span class="line">    //大图、小图、背景在切换时的变化行为</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">imageTab</span></span>()&#123;</span><br><span class="line">        /*</span><br><span class="line">         速度：大图  &gt; 背景<span class="number">3</span>  &gt; 背景<span class="number">2</span> &gt; 背景<span class="number">1</span>，实现视差滚动</span><br><span class="line">         背景图的运动，通过控制目标值来控制速度。</span><br><span class="line">         注意，这里一定要加Math.floor()，即目标值为整数，这样才不会出现抖动。</span><br><span class="line">         */</span><br><span class="line">        startmove(bigP , &#123;left: -now*ww&#125; );</span><br><span class="line">        startmove(<span class="built_in">bg</span>3 , &#123;left: -now * Math.floor(<span class="built_in">bg</span>3.offsetWidth/<span class="number">8</span>) &#125; );</span><br><span class="line">        startmove(<span class="built_in">bg</span>2 , &#123;left: -now * Math.floor(<span class="built_in">bg</span>2.offsetWidth/<span class="number">10</span>)&#125; );</span><br><span class="line">        startmove(<span class="built_in">bg</span>1 , &#123;left: -now * Math.floor(<span class="built_in">bg</span>1.offsetWidth/<span class="number">12</span>) &#125; );</span><br><span class="line">        //小图随大图走</span><br><span class="line">        <span class="keyword">for</span>(var j=<span class="number">0</span>; j&lt;L ;j++)&#123;</span><br><span class="line">            startmove( smallPLi[j] , &#123;opacity:<span class="number">70</span> , marginTop:<span class="number">0</span>&#125; );</span><br><span class="line">        &#125;</span><br><span class="line">        startmove( smallPLi[now] , &#123;opacity:<span class="number">100</span> , marginTop:-<span class="number">20</span>&#125; );</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(var i=<span class="number">0</span>; i&lt;L; i++)&#123;</span><br><span class="line">        smallPLi[i].index = i;</span><br><span class="line"></span><br><span class="line">        //小图移入、移除、点击效果</span><br><span class="line">        smallPLi[i].onmouseover = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            startmove( smallPLi[this.index] , &#123;opacity:<span class="number">100</span> , marginTop:-<span class="number">20</span>&#125; );</span><br><span class="line">        &#125;;</span><br><span class="line">        smallPLi[i].onmouseout = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            startmove( smallPLi[this.index] , &#123;opacity:<span class="number">70</span> , marginTop:<span class="number">0</span>&#125; );</span><br><span class="line">        &#125;;</span><br><span class="line">        smallPLi[i].onclick = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            now = this.index;</span><br><span class="line">            imageTab();</span><br><span class="line">        &#125;;</span><br><span class="line">        //左按钮</span><br><span class="line">        pre.onclick = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            now--;</span><br><span class="line">            <span class="keyword">if</span>(now == -<span class="number">1</span>)&#123;</span><br><span class="line">                now = <span class="number">0</span>;     //防止左边出界</span><br><span class="line">                <span class="built_in">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            imageTab();</span><br><span class="line">        &#125;;</span><br><span class="line">        //右按钮</span><br><span class="line">        nex.onclick = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">            now++;</span><br><span class="line">            <span class="keyword">if</span>(now == <span class="number">6</span>)&#123;</span><br><span class="line">                now = <span class="number">5</span>;    //防止右边出界</span><br><span class="line">                <span class="built_in">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            imageTab();</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //自动播放</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">autoPlay</span></span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(now == <span class="number">5</span>)&#123;</span><br><span class="line">            now = -<span class="number">1</span>;    //自动播放时，右边最后一个运动完切换到第一个</span><br><span class="line">        &#125;</span><br><span class="line">        now++;</span><br><span class="line">        imageTab();</span><br><span class="line">    &#125;;</span><br><span class="line">    var timer = <span class="built_in">set</span>Interval( autoPlay , <span class="number">5000</span>);</span><br><span class="line">    oPS.onmouseover = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        clearInterval(timer);</span><br><span class="line">    &#125;;</span><br><span class="line">    oPS.onmouseout = <span class="function"><span class="title">function</span></span> ()&#123;</span><br><span class="line">        timer = <span class="built_in">set</span>Interval( autoPlay , <span class="number">5000</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">oParallaxScrolling();</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/前端/">前端</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/html/">html</a><a href="/tags/js/">js</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2015/04/03/视差滚动2/" data-title="视差滚动 | lyre" data-tsina="2122937592## e.g. 2176287895  Your weibo ID,It will be used in share button." class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/03/快速排序2/"  title="快速排序">
+ <strong>下一篇：</strong><br/> 
+ <span>快速排序
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/03/视差滚动2/" data-title="视差滚动" data-url="http://yoursite.com/2015/04/03/视差滚动2/"></div>
+</section>
+
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现原理："><span class="toc-number">2.</span> <span class="toc-text">实现原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/生活/" title="生活">生活<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/编程/" title="编程">编程<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/开始/" title="开始">开始<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我/" title="我">我<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据结构/" title="数据结构">数据结构<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.w3school.com.cn/" target="_blank" title="w3cschool">w3cschool</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.csdn.net/" target="_blank" title="CSDN中文论坛">CSDN中文论坛</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+<div class="doubanshow">
+<p class="asidetitle">豆瓣秀</p>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/douabn## e.g. wuchong1014 or your id for https://www.douban.com/people/wuchong1014/?show=collection&amp;n=12&amp;columns=3&amp;hidelogo=yes&amp;hideself=yes&amp;cat=book|movie" ></script>
+</div>
+</div>
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 大家好，我是lyre. <br/>
+			作为一名热爱前端的小蜗牛，缓缓前进.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2122937592" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/https://github.com/lyre" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/douabn## e.g. wuchong1014 or your id for https://www.douban.com/people/wuchong1014" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+		<a href="mailto:lyredq@qq.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="lyre">lyre</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lyre"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lyre';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
