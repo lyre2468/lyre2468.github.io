@@ -14,10 +14,10 @@
     <meta name="description" content="快速排序的基本思想基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="快速排序">
-<meta property="og:url" content="http://yoursite.com/2015/04/03/快速排序2/index.html">
+<meta property="og:url" content="https://github.com/lyre2468/lyre2468.github.io.git/2015/04/03/快速排序2/index.html">
 <meta property="og:site_name" content="lyre">
 <meta property="og:description" content="快速排序的基本思想基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
-<meta property="og:updated_time" content="2015-08-20T14:58:20.742Z">
+<meta property="og:updated_time" content="2015-08-22T02:14:52.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序">
 <meta name="twitter:description" content="快速排序的基本思想基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。">
@@ -56,7 +56,7 @@
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
 						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="hidden" name="q" value="site:github.com/lyre2468/lyre2468.github.io.git">
 					</form>
 					
 					</li>
@@ -91,7 +91,13 @@
 		
 		</div>
 		
-		<p>快速排序的基本思想基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int Partition(int a[], int left, int right) &#123;  </span><br><span class="line">    int base = a[left];  </span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;  </span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; a[right]&gt;base) //从右往左找出第一个比基准小的数据  </span><br><span class="line">            --right;  </span><br><span class="line">        a[left] = a[right]; //将这个数放到基准的左边  </span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; a[left]&lt;base) //从左往右找出第一个比基准大的数据  </span><br><span class="line">            ++left;  </span><br><span class="line">        a[right] = a[left]; //放到右边  </span><br><span class="line">    &#125;  </span><br><span class="line">    a[left] = base;  </span><br><span class="line">    <span class="built_in">return</span> left; //返回基准的位置  </span><br><span class="line">&#125;  </span><br><span class="line">void  QuickSort(int a[], int left, int right) &#123;  </span><br><span class="line">    int i;  </span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;  </span><br><span class="line">        i = Partition(a, left, right);  </span><br><span class="line">        QuickSort(a, left, i-<span class="number">1</span>);  </span><br><span class="line">        QuickSort(a, i+<span class="number">1</span>, right);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">void <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int n = <span class="number">10</span>;</span><br><span class="line">	int a[<span class="number">10</span>] = &#123; <span class="number">72</span>,<span class="number">6</span>,<span class="number">57</span>,<span class="number">88</span>,<span class="number">60</span>,<span class="number">42</span>,<span class="number">83</span>,<span class="number">73</span>,<span class="number">48</span>,<span class="number">85</span>&#125;;</span><br><span class="line">	QuickSort(a,<span class="number">0</span>,n-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(int j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; a[j] &lt;&lt; <span class="string">"   "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+		<p>快速排序的基本思想基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。</p>
+<p>快速排序由于效率在同为 O(N<em>logN) O(N</em>logN) O(N<em>logN)O(N</em>logN) 的几种排序方法中效率较高，因此经常 的几种排序方法中效率较高，因此经常 的几种排序方法中效率较高，因此经常 被采用，再加上快速排序思想 被采用，再加上快速排序思想 —— 分治法也确实 非常 实用 ，因此很多软件公司的 笔试 面，包括像腾讯微软等知名 IT 公司都喜欢考这个， 公司都喜欢考这个， 还有大小的程序 方面的考试如软，研中 也常出现快速排序的身影 。<br>总的说来，要直接默写出快速排序还是有一定难度因 总的说来，要直接默写出快速排序还是有一定难度。</p>
+<p>快速排序是 C.R.A.HoareC.R.A.Hoare C.R.A.Hoare C.R.A.Hoare C.R.A.HoareC.R.A.Hoare于 1962 年提出的一种划分 交换排序。它采用了治的策略，通 常称其为分治法 (Divide (Divide (Divide -andand -ConquerMethod)ConquerMethod) ConquerMethod) ConquerMethod) 。<br>该方法的基本思想是：</p>
+<p>1．先从数列中取出一个作为基准。</p>
+<p>2．分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等分区过程，将比这个数大的全放到它 右边小于或等的左边。</p>
+<p>3．再对左右区间重复第二步，直到各只有一个数。</p>
+<p>虽然快速排序称为分治法，但这三个字显无很好的概括全 虽然快速排序称为分治法，但这三个字显无很好的概括全 部步骤。因此我的对快速排序作了进一说明 ：挖坑填数 +分治法。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line">int Partition(int a[], int left, int right) &#123;  </span><br><span class="line">    int base = a[left];  </span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;  </span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; a[right]&gt;base) //从右往左找出第一个比基准小的数据  </span><br><span class="line">            --right;  </span><br><span class="line">        a[left] = a[right]; //将这个数放到基准的左边  </span><br><span class="line">        <span class="keyword">while</span> (left &lt; right &amp;&amp; a[left]&lt;base) //从左往右找出第一个比基准大的数据  </span><br><span class="line">            ++left;  </span><br><span class="line">        a[right] = a[left]; //放到右边  </span><br><span class="line">    &#125;  </span><br><span class="line">    a[left] = base;  </span><br><span class="line">    <span class="built_in">return</span> left; //返回基准的位置  </span><br><span class="line">&#125;  </span><br><span class="line">void  QuickSort(int a[], int left, int right) &#123;  </span><br><span class="line">    int i;  </span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;  </span><br><span class="line">        i = Partition(a, left, right);  </span><br><span class="line">        QuickSort(a, left, i-<span class="number">1</span>);  </span><br><span class="line">        QuickSort(a, i+<span class="number">1</span>, right);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">void <span class="function"><span class="title">main</span></span>()</span><br><span class="line">&#123;</span><br><span class="line">	int n = <span class="number">10</span>;</span><br><span class="line">	int a[<span class="number">10</span>] = &#123; <span class="number">72</span>,<span class="number">6</span>,<span class="number">57</span>,<span class="number">88</span>,<span class="number">60</span>,<span class="number">42</span>,<span class="number">83</span>,<span class="number">73</span>,<span class="number">48</span>,<span class="number">85</span>&#125;;</span><br><span class="line">	QuickSort(a,<span class="number">0</span>,n-<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(int j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; a[j] &lt;&lt; <span class="string">"   "</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -114,7 +120,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2015/04/03/快速排序2/" data-title="快速排序 | lyre" data-tsina="2122937592## e.g. 2176287895  Your weibo ID,It will be used in share button." class="share clearfix">
+	  <div data-url="https://github.com/lyre2468/lyre2468.github.io.git/2015/04/03/快速排序2/" data-title="快速排序 | lyre" data-tsina="2122937592## e.g. 2176287895  Your weibo ID,It will be used in share button." class="share clearfix">
 	  </div>
 	
 	</div>
@@ -137,9 +143,9 @@
 
 
 <div class="next">
-<a href="/2015/03/07/hello-world/"  title="Hello World">
+<a href="/2015/03/07/hello-world - 副本2/"  title="hexo 简单命令介绍">
  <strong>下一篇：</strong><br/> 
- <span>Hello World
+ <span>hexo 简单命令介绍
 </span>
 </a>
 </div>
@@ -148,7 +154,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/04/03/快速排序2/" data-title="快速排序" data-url="http://yoursite.com/2015/04/03/快速排序2/"></div>
+	<div class="ds-thread" data-thread-key="2015/04/03/快速排序2/" data-title="快速排序" data-url="https://github.com/lyre2468/lyre2468.github.io.git/2015/04/03/快速排序2/"></div>
 </section>
 
 
@@ -178,7 +184,7 @@
 		<ul>
 		
 		  
-			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+			<li><a href="/categories/前端/" title="前端">前端<sup>2</sup></a></li>
 		  
 		
 		  
@@ -199,19 +205,19 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/js/" title="js">js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/html/" title="html">html<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/开始/" title="开始">开始<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/我/" title="我">我<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 			
